@@ -8,14 +8,17 @@ class CategorizationsController < ApplicationController
   def create
     @kitten = Kitten.find(params[:kitten_id])
     @categorization = @kitten.categorizations.new(allowed_params)
-    @categorization.save
-    redirect_to root_path
+    if @categorization.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
 
   def allowed_params
-    params.require(:categorizations).permit(:category_id)
+    params.require(:categorization).permit(:category_id)
   end
 
 end

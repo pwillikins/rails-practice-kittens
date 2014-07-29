@@ -1,6 +1,6 @@
 <div class="kitten">
   <%= link_to image_tag(kitten.image), new_kitten_categorization_path(kitten), class: "kitten-link" %>
-  <%= kitten.categories.each do |category| %>
-    <%= category %>
+  <% kitten.categories.sort_by { |x| x.name }.each do |category| %>
+    <%= category.name %>
   <% end %>
 </div>
